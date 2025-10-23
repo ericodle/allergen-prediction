@@ -1,2 +1,4 @@
 #ignore these
 data/
+results/
+env/
