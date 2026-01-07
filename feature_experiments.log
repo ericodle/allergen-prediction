@@ -1,0 +1,181 @@
+Traceback (most recent call last):
+  File "/home/eo/allergen-prediction/run_feature_count_experiments.py", line 268, in main
+    summary = run_experiment_with_features(n_features, exp_num, base_results_dir)
+  File "/home/eo/allergen-prediction/run_feature_count_experiments.py", line 75, in run_experiment_with_features
+    pos_train = pd.read_csv(f"{base_results_dir}/Pos_train_descriptors.csv")
+  File "/home/eo/allergen-prediction/venv/lib/python3.13/site-packages/pandas/io/parsers/readers.py", line 1026, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "/home/eo/allergen-prediction/venv/lib/python3.13/site-packages/pandas/io/parsers/readers.py", line 620, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+  File "/home/eo/allergen-prediction/venv/lib/python3.13/site-packages/pandas/io/parsers/readers.py", line 1620, in __init__
+    self._engine = self._make_engine(f, self.engine)
+                   ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "/home/eo/allergen-prediction/venv/lib/python3.13/site-packages/pandas/io/parsers/readers.py", line 1880, in _make_engine
+    self.handles = get_handle(
+                   ~~~~~~~~~~^
+        f,
+        ^^
+    ...<6 lines>...
+        storage_options=self.options.get("storage_options", None),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/eo/allergen-prediction/venv/lib/python3.13/site-packages/pandas/io/common.py", line 873, in get_handle
+    handle = open(
+        handle,
+    ...<3 lines>...
+        newline="",
+    )
+FileNotFoundError: [Errno 2] No such file or directory: '/home/eo/allergen-prediction/results/Pos_train_descriptors.csv'
+Traceback (most recent call last):
+  File "/home/eo/allergen-prediction/run_feature_count_experiments.py", line 268, in main
+    summary = run_experiment_with_features(n_features, exp_num, base_results_dir)
+  File "/home/eo/allergen-prediction/run_feature_count_experiments.py", line 75, in run_experiment_with_features
+    pos_train = pd.read_csv(f"{base_results_dir}/Pos_train_descriptors.csv")
+  File "/home/eo/allergen-prediction/venv/lib/python3.13/site-packages/pandas/io/parsers/readers.py", line 1026, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "/home/eo/allergen-prediction/venv/lib/python3.13/site-packages/pandas/io/parsers/readers.py", line 620, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+  File "/home/eo/allergen-prediction/venv/lib/python3.13/site-packages/pandas/io/parsers/readers.py", line 1620, in __init__
+    self._engine = self._make_engine(f, self.engine)
+                   ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "/home/eo/allergen-prediction/venv/lib/python3.13/site-packages/pandas/io/parsers/readers.py", line 1880, in _make_engine
+    self.handles = get_handle(
+                   ~~~~~~~~~~^
+        f,
+        ^^
+    ...<6 lines>...
+        storage_options=self.options.get("storage_options", None),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/eo/allergen-prediction/venv/lib/python3.13/site-packages/pandas/io/common.py", line 873, in get_handle
+    handle = open(
+        handle,
+    ...<3 lines>...
+        newline="",
+    )
+FileNotFoundError: [Errno 2] No such file or directory: '/home/eo/allergen-prediction/results/Pos_train_descriptors.csv'
+Traceback (most recent call last):
+  File "/home/eo/allergen-prediction/run_feature_count_experiments.py", line 268, in main
+    summary = run_experiment_with_features(n_features, exp_num, base_results_dir)
+  File "/home/eo/allergen-prediction/run_feature_count_experiments.py", line 75, in run_experiment_with_features
+    pos_train = pd.read_csv(f"{base_results_dir}/Pos_train_descriptors.csv")
+  File "/home/eo/allergen-prediction/venv/lib/python3.13/site-packages/pandas/io/parsers/readers.py", line 1026, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "/home/eo/allergen-prediction/venv/lib/python3.13/site-packages/pandas/io/parsers/readers.py", line 620, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+  File "/home/eo/allergen-prediction/venv/lib/python3.13/site-packages/pandas/io/parsers/readers.py", line 1620, in __init__
+    self._engine = self._make_engine(f, self.engine)
+                   ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "/home/eo/allergen-prediction/venv/lib/python3.13/site-packages/pandas/io/parsers/readers.py", line 1880, in _make_engine
+    self.handles = get_handle(
+                   ~~~~~~~~~~^
+        f,
+        ^^
+    ...<6 lines>...
+        storage_options=self.options.get("storage_options", None),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/eo/allergen-prediction/venv/lib/python3.13/site-packages/pandas/io/common.py", line 873, in get_handle
+    handle = open(
+        handle,
+    ...<3 lines>...
+        newline="",
+    )
+FileNotFoundError: [Errno 2] No such file or directory: '/home/eo/allergen-prediction/results/Pos_train_descriptors.csv'
+Traceback (most recent call last):
+  File "/home/eo/allergen-prediction/run_feature_count_experiments.py", line 268, in main
+    summary = run_experiment_with_features(n_features, exp_num, base_results_dir)
+  File "/home/eo/allergen-prediction/run_feature_count_experiments.py", line 75, in run_experiment_with_features
+    pos_train = pd.read_csv(f"{base_results_dir}/Pos_train_descriptors.csv")
+  File "/home/eo/allergen-prediction/venv/lib/python3.13/site-packages/pandas/io/parsers/readers.py", line 1026, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "/home/eo/allergen-prediction/venv/lib/python3.13/site-packages/pandas/io/parsers/readers.py", line 620, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+  File "/home/eo/allergen-prediction/venv/lib/python3.13/site-packages/pandas/io/parsers/readers.py", line 1620, in __init__
+    self._engine = self._make_engine(f, self.engine)
+                   ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "/home/eo/allergen-prediction/venv/lib/python3.13/site-packages/pandas/io/parsers/readers.py", line 1880, in _make_engine
+    self.handles = get_handle(
+                   ~~~~~~~~~~^
+        f,
+        ^^
+    ...<6 lines>...
+        storage_options=self.options.get("storage_options", None),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/eo/allergen-prediction/venv/lib/python3.13/site-packages/pandas/io/common.py", line 873, in get_handle
+    handle = open(
+        handle,
+    ...<3 lines>...
+        newline="",
+    )
+FileNotFoundError: [Errno 2] No such file or directory: '/home/eo/allergen-prediction/results/Pos_train_descriptors.csv'
+Traceback (most recent call last):
+  File "/home/eo/allergen-prediction/run_feature_count_experiments.py", line 268, in main
+    summary = run_experiment_with_features(n_features, exp_num, base_results_dir)
+  File "/home/eo/allergen-prediction/run_feature_count_experiments.py", line 75, in run_experiment_with_features
+    pos_train = pd.read_csv(f"{base_results_dir}/Pos_train_descriptors.csv")
+  File "/home/eo/allergen-prediction/venv/lib/python3.13/site-packages/pandas/io/parsers/readers.py", line 1026, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "/home/eo/allergen-prediction/venv/lib/python3.13/site-packages/pandas/io/parsers/readers.py", line 620, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+  File "/home/eo/allergen-prediction/venv/lib/python3.13/site-packages/pandas/io/parsers/readers.py", line 1620, in __init__
+    self._engine = self._make_engine(f, self.engine)
+                   ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "/home/eo/allergen-prediction/venv/lib/python3.13/site-packages/pandas/io/parsers/readers.py", line 1880, in _make_engine
+    self.handles = get_handle(
+                   ~~~~~~~~~~^
+        f,
+        ^^
+    ...<6 lines>...
+        storage_options=self.options.get("storage_options", None),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/eo/allergen-prediction/venv/lib/python3.13/site-packages/pandas/io/common.py", line 873, in get_handle
+    handle = open(
+        handle,
+    ...<3 lines>...
+        newline="",
+    )
+FileNotFoundError: [Errno 2] No such file or directory: '/home/eo/allergen-prediction/results/Pos_train_descriptors.csv'
+Using device: cuda
+================================================================================
+FEATURE COUNT EXPERIMENTS
+================================================================================
+
+================================================================================
+EXPERIMENT 1: Using 50 features
+================================================================================
+Loading data...
+Experiment 1 failed: [Errno 2] No such file or directory: '/home/eo/allergen-prediction/results/Pos_train_descriptors.csv'
+
+================================================================================
+EXPERIMENT 2: Using 100 features
+================================================================================
+Loading data...
+Experiment 2 failed: [Errno 2] No such file or directory: '/home/eo/allergen-prediction/results/Pos_train_descriptors.csv'
+
+================================================================================
+EXPERIMENT 3: Using 150 features
+================================================================================
+Loading data...
+Experiment 3 failed: [Errno 2] No such file or directory: '/home/eo/allergen-prediction/results/Pos_train_descriptors.csv'
+
+================================================================================
+EXPERIMENT 4: Using 200 features
+================================================================================
+Loading data...
+Experiment 4 failed: [Errno 2] No such file or directory: '/home/eo/allergen-prediction/results/Pos_train_descriptors.csv'
+
+================================================================================
+EXPERIMENT 5: Using 217 features
+================================================================================
+Loading data...
+Experiment 5 failed: [Errno 2] No such file or directory: '/home/eo/allergen-prediction/results/Pos_train_descriptors.csv'
+
+All experiments complete!
