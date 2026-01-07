@@ -14,29 +14,42 @@ plt.style.use('seaborn-v0_8')
 sns.set_palette("husl")
 
 def load_all_results(base_dir="/home/eo/allergen-prediction/results"):
-    """Load results from all experiments"""
+    """Load results from all experiments - using Phase 2 DL results"""
     results = []
     
     for exp_num in range(1, 6):
         exp_dir = f"{base_dir}/experiment{exp_num}"
+        phase2_dir = f"{base_dir}/phase2_comparative_evaluation/experiment{exp_num}"
+        n_features = [50, 100, 150, 200, 217][exp_num - 1]
         
         # Load ML results
         ml_file = f"{exp_dir}/ml_evaluation/model_performance_summary.csv"
-        dl_file = f"{exp_dir}/deep_learning_evaluation/performance_summary.csv"
-        
         if os.path.exists(ml_file):
             ml_df = pd.read_csv(ml_file)
             ml_df['Experiment'] = exp_num
             ml_df['Model_Type'] = 'Traditional ML'
-            ml_df['N_Features'] = [50, 100, 150, 200, 217][exp_num - 1]
+            ml_df['N_Features'] = n_features
             results.append(ml_df)
         
-        if os.path.exists(dl_file):
-            dl_df = pd.read_csv(dl_file)
+        # Load Phase 2 DL results (preferred over old DL results)
+        phase2_file = f"{phase2_dir}/performance_summary.csv"
+        if os.path.exists(phase2_file):
+            dl_df = pd.read_csv(phase2_file)
             dl_df['Experiment'] = exp_num
             dl_df['Model_Type'] = 'Deep Learning'
-            dl_df['N_Features'] = [50, 100, 150, 200, 217][exp_num - 1]
-            results.append(dl_df)
+            dl_df['N_Features'] = n_features
+            # Rename 'Model' column if needed to match ML format
+            if 'Model' in dl_df.columns:
+                results.append(dl_df)
+        else:
+            # Fallback to old DL results if Phase 2 doesn't exist
+            dl_file = f"{exp_dir}/deep_learning_evaluation/performance_summary.csv"
+            if os.path.exists(dl_file):
+                dl_df = pd.read_csv(dl_file)
+                dl_df['Experiment'] = exp_num
+                dl_df['Model_Type'] = 'Deep Learning'
+                dl_df['N_Features'] = n_features
+                results.append(dl_df)
     
     if results:
         return pd.concat(results, ignore_index=True)
@@ -92,15 +105,20 @@ def create_comparison_plots(results_df, output_dir="/home/eo/allergen-prediction
     ml_counts = results_df[results_df['Model_Type'] == 'Traditional ML'].groupby('N_Features').size()
     dl_counts = results_df[results_df['Model_Type'] == 'Deep Learning'].groupby('N_Features').size()
     
-    x = np.arange(len(ml_counts.index))
+    # Align indices to handle missing values
+    all_features = sorted(set(ml_counts.index) | set(dl_counts.index))
+    ml_values = [ml_counts.get(f, 0) for f in all_features]
+    dl_values = [dl_counts.get(f, 0) for f in all_features]
+    
+    x = np.arange(len(all_features))
     width = 0.35
-    ax.bar(x - width/2, ml_counts.values, width, label='Traditional ML', alpha=0.7)
-    ax.bar(x + width/2, dl_counts.values, width, label='Deep Learning', alpha=0.7)
+    ax.bar(x - width/2, ml_values, width, label='Traditional ML', alpha=0.7)
+    ax.bar(x + width/2, dl_values, width, label='Deep Learning', alpha=0.7)
     ax.set_xlabel('Number of Features', fontsize=12)
     ax.set_ylabel('Number of Models', fontsize=12)
     ax.set_title('Number of Models Evaluated', fontsize=14, fontweight='bold')
     ax.set_xticks(x)
-    ax.set_xticklabels(ml_counts.index)
+    ax.set_xticklabels(all_features)
     ax.legend(fontsize=11)
     ax.grid(True, alpha=0.3, axis='y')
     
