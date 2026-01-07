@@ -1,136 +1,44 @@
-# Allergen Prediction Machine Learning Framework
+# Allergen Prediction: ML/DL Evaluation
 
-This repository contains a comprehensive machine learning framework for predicting chemical compound allergenicity using molecular descriptors.
+Machine learning and deep learning framework for predicting chemical compound allergenicity using molecular descriptors.
 
-## 📁 Project Structure
+## Quick Start
 
-```
-allergen-prediction/
-├── ml_evaluation/                    # Traditional Machine Learning
-│   ├── ml_evaluation.py             # Main ML evaluation script
-│   └── ml_requirements.txt          # ML dependencies
-├── deep_learning_evaluation/         # Deep Learning (PyTorch)
-│   ├── evaluation.py                # Deep learning evaluation script
-│   └── requirements.txt             # Deep learning dependencies
-├── results/                         # All evaluation results
-│   ├── ml_evaluation/              # Traditional ML results
-│   ├── deep_learning_evaluation/   # Deep learning results
-│   └── *.csv                       # Original data files
-├── comprehensive_comparison.py      # Combined analysis script
-└── README.md                       # This file
-```
-
-## 🎯 Dataset Overview
-
-- **Training Set**: 1,177 samples (320 positive, 857 negative)
-- **Test Set**: 295 samples
-- **Features**: 714 molecular descriptors extracted using PaDEL
-- **Task**: Binary classification (allergenic vs non-allergenic)
-
-## 🤖 Models Evaluated
-
-### Traditional Machine Learning (9 models)
-- **SVM** - Support Vector Machine
-- **Random Forest** - Random Forest Classifier
-- **Gradient Boosting** - Gradient Boosting Classifier
-- **K-Nearest Neighbors** - KNN Classifier
-- **AdaBoost** - AdaBoost Classifier
-- **Neural Network** - Multi-layer Perceptron
-- **Logistic Regression** - Logistic Regression
-- **Decision Tree** - Decision Tree Classifier
-- **Naive Bayes** - Gaussian Naive Bayes
-
-### Deep Learning Models (4 PyTorch models)
-- **Simple NN** - Simple Neural Network (4 layers)
-- **Deep NN** - Deep Neural Network (7 layers)
-- **Wide NN** - Wide Neural Network (5 layers, 2048 neurons)
-- **Ensemble NN** - Multi-branch Ensemble Network
-
-## 🏆 Key Results
-
-### Best Overall Model
-- **Model**: SVM (Traditional ML)
-- **AUC Score**: 0.9293 (92.93%)
-- **Accuracy**: 85.76%
-- **Precision**: 90.20%
-
-### Top 5 Models by AUC Score
-1. **SVM** (Traditional ML) - AUC: 0.9293
-2. **Random Forest** (Traditional ML) - AUC: 0.9282
-3. **Gradient Boosting** (Traditional ML) - AUC: 0.9020
-4. **Wide NN** (Deep Learning) - AUC: 0.8937
-5. **Deep NN** (Deep Learning) - AUC: 0.8920
-
-### Model Type Performance
-- **Traditional ML Average AUC**: 0.8635
-- **Deep Learning Average AUC**: 0.8817
-- **Best Traditional ML**: SVM (AUC: 0.9293)
-- **Best Deep Learning**: Wide NN (AUC: 0.8937)
-
-## 🚀 Usage
-
-### Run Traditional ML Evaluation
 ```bash
-cd ml_evaluation
-pip install -r ml_requirements.txt
-python ml_evaluation.py
+# Setup
+python3.12 -m venv env
+source env/bin/activate
+sed '/^audioop-lts/d' requirements.txt | pip install -r /dev/stdin
+
+# Run experiments
+python convert_sdf_to_descriptors.py                    # Step 1: Extract descriptors
+python run_feature_count_experiments.py                 # Step 2: Run experiments
+python run_experiments_with_hyperparameter_search.py   # Step 3: Optimize hyperparameters (optional)
+python visualize_feature_count_results.py              # Step 4: Visualize results
 ```
 
-### Run Deep Learning Evaluation (PyTorch)
-```bash
-cd deep_learning_evaluation
-pip install -r requirements.txt
-python evaluation.py
-```
+## Dataset
 
-### Run Comprehensive Comparison
-```bash
-python comprehensive_comparison.py
-```
+- **Training**: 1,158 compounds (315 positive, 843 negative)
+- **Test**: 295 compounds (83 positive, 212 negative)
+- **Features**: 217 molecular descriptors (RDKit)
 
-## 📊 Generated Outputs
+## Models
 
-### Performance Summaries
-- `ml_evaluation/model_performance_summary.csv` - Traditional ML results
-- `deep_learning_evaluation/performance_summary.csv` - Deep learning results
-- `comprehensive_results_summary.csv` - Combined results
+**Traditional ML (9)**: SVM, Random Forest, Gradient Boosting, KNN, Logistic Regression, Neural Network, AdaBoost, Naive Bayes, Decision Tree
 
-### Visualizations
-- **Performance comparison charts** for all models
-- **ROC curves** and **Precision-Recall curves**
-- **Confusion matrices** for each model
-- **Feature importance analysis**
-- **Training history plots** for deep learning models
-- **Model type performance comparison** (box plots and bar charts)
-- **Performance scatter plot** (Accuracy vs AUC)
+**Deep Learning (4)**: MLP, CNN, LSTM, Transformer (with hyperparameter optimization)
 
-## 🔧 Dependencies
+## Experiments
 
-### Traditional ML
-- pandas, numpy, matplotlib, seaborn
-- scikit-learn
-- Standard Python scientific stack
+Five feature count experiments: 50, 100, 150, 200, 217 features. Results saved in `results/experiment*/`.
 
-### Deep Learning
-- pandas, numpy, matplotlib, seaborn
-- scikit-learn
-- PyTorch, torchvision
+## Outputs
 
-## 📈 Key Insights
+- Performance summaries (CSV)
+- Comparison plots (PNG)
+- Hyperparameter search results (JSON, if Step 3 completed)
 
-1. **SVM performs best** with the highest AUC score of 0.9293
-2. **Random Forest is close second** with AUC of 0.9282
-3. **Deep learning models show promise** with Wide NN achieving 0.8937 AUC
-4. **Traditional ML models are more consistent** across different metrics
-5. **Feature importance analysis** reveals key molecular descriptors for allergen prediction
+## Requirements
 
-## 🎯 Conclusion
-
-The evaluation demonstrates that both traditional machine learning and deep learning approaches can effectively predict allergenicity from molecular descriptors. The SVM model emerges as the best performer, suggesting that the problem benefits from non-linear decision boundaries and margin maximization. The results provide a solid foundation for building a practical allergen prediction system.
-
-## 📝 Notes
-
-- All results are automatically saved to the `results/` directory
-- The framework supports both CPU and GPU training (PyTorch)
-- Early stopping and learning rate scheduling are implemented for deep learning models
-- Comprehensive evaluation includes multiple metrics and visualizations
+See `requirements.txt`. Key: pandas, numpy, scikit-learn, torch, matplotlib, seaborn, RDKit.

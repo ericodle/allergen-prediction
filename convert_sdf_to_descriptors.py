@@ -9,8 +9,12 @@ import pandas as pd
 import numpy as np
 from rdkit import Chem
 from rdkit.Chem import Descriptors
+from rdkit import RDLogger
 import warnings
 warnings.filterwarnings('ignore')
+
+# Suppress RDKit error/warning messages
+RDLogger.DisableLog('rdApp.*')
 
 def convert_sdf_to_descriptors(sdf_file, output_csv, data_dir="/home/eo/allergen-prediction/ChAIPred"):
     """
@@ -39,7 +43,10 @@ def convert_sdf_to_descriptors(sdf_file, output_csv, data_dir="/home/eo/allergen
     names = []
     
     print(f"Reading molecules from {sdf_file}...")
+    total_mols = 0
+    skipped_mols = 0
     for mol in supplier:
+        total_mols += 1
         if mol is not None:
             molecules.append(mol)
             # Try to get name from molecule properties
@@ -48,8 +55,10 @@ def convert_sdf_to_descriptors(sdf_file, output_csv, data_dir="/home/eo/allergen
             except:
                 name = f"mol_{len(molecules)}"
             names.append(name)
+        else:
+            skipped_mols += 1
     
-    print(f"Found {len(molecules)} molecules in {sdf_file}")
+    print(f"Successfully processed {len(molecules)} molecules (skipped {skipped_mols} invalid molecules)")
     
     if len(molecules) == 0:
         raise ValueError(f"No valid molecules found in {sdf_file}")
